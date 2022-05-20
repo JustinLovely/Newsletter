@@ -41,7 +41,7 @@ name: Send a HTTP Request when new RSS item is detected
 on:
   rss:
     url: https://hnrss.org/newest?count=15
-    -https://mindmeld.substack.com/feed
+    - https://mindmeld.substack.com/feed
 jobs:
   request:
     name: Request
