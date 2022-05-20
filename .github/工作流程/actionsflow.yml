@@ -50,11 +50,12 @@ jobs:
       - name: Make a HTTP Request      
         uses: actionsflow/axios@main
         with:
-          url: https://hookb.in/eKgjENOKRYUeYYRdXL6W
+          url: https://cubox.pro/c/api/save/uh6ltpry2mmlnz
           method: POST
           body: |
-            {
-              "link":"${{on.rss.outputs.link}}", 
-              "title": "${{on.rss.outputs.title}}",
-              "content":"<<<${{on.rss.outputs.contentSnippet}}>>>"
+             {
+              "type":"url",
+              "content":"${{ on.rss.outputs.link }}",
+              "title": "${{ on.rss.outputs.title }}",
+              "folder":"finance"
             }
