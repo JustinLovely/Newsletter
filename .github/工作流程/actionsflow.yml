@@ -37,3 +37,23 @@ jobs:
         uses: actionsflow/setup-act-for-actionsflow@v1
       - name: Run act
         run: act --workflows ./dist/workflows --secret-file ./dist/.secrets --eventpath ./dist/event.json --env-file ./dist/.env -P ubuntu-latest=actionsflow/act-environment:v1 -P ubuntu-18.04=actionsflow/act-environment:v1
+name: Send a HTTP Request when new RSS item is detected
+on:
+  rss:
+    url: https://hnrss.org/newest?count=15
+jobs:
+  request:
+    name: Request
+    runs-on: ubuntu-latest
+    steps:
+      - name: Make a HTTP Request      
+        uses: actionsflow/axios@main
+        with:
+          url: https://hookb.in/eKgjENOKRYUeYYRdXL6W
+          method: POST
+          body: |
+            {
+              "link":"${{on.rss.outputs.link}}", 
+              "title": "${{on.rss.outputs.title}}",
+              "content":"<<<${{on.rss.outputs.contentSnippet}}>>>"
+            }
